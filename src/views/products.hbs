@@ -1,3 +1,10 @@
+<h1 class="m-3">{{welcomeMessage}}</h1>
+  <div>
+    <p>Mail:{{user.email}}</p>
+    <p>Edad:{{user.age}}</p>
+    <p>Rol:{{user.rol}}</p>
+  </div>
+<button id="logout" onclick="logout()">Logout</button>
 <div>
   <table class="table">
     <thead>
@@ -53,3 +60,18 @@
     </p>
   </div>
 </div>
+
+<script>
+  function logout(){
+    console.log("hola")
+    fetch('/api/sessions/logout', {
+      method:"GET",
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(result => {
+      console.log(result.status)
+      if(result.status === 200) window.location.replace('/users/login')
+    })
+  }
+</script>
